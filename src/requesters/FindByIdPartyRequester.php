@@ -1,10 +1,11 @@
 <?php
 
-namespace c7v\dadata;
+namespace c7v\dadata\requesters;
 
 use GuzzleHttp\RequestOptions;
+use c7v\dadata\BaseRequester;
 
-class FindByIdParty extends BaseRequester
+class FindByIdPartyRequester extends BaseRequester
 {
 	const METHOD_URL = '4_1/rs/findById/party';
 

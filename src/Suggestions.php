@@ -4,6 +4,9 @@ namespace c7v\dadata;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
+use c7v\dadata\requesters\FindByIdFnsUnitRequester;
+use c7v\dadata\requesters\FindByIdPartyRequester;
+use c7v\dadata\requesters\FindByIdBankRequester;
 
 final class Suggestions
 {
@@ -48,7 +51,7 @@ final class Suggestions
 	 * @param string $accessToken Токен доступа к API DaData.Ru
 	 * @return $this
 	 */
-	public function reSetAccessToken(string $accessToken): Suggestions
+	public function reSetAccessToken(string $accessToken): self
 	{
 		$this->_accessToken = $accessToken;
 
@@ -62,11 +65,11 @@ final class Suggestions
 
 	/**
 	 * Получить данные по ИНН.
-	 * @return FindByIdParty
+	 * @return FindByIdPartyRequester
 	 */
-	public function requesterFindByIdParty(string $inn): FindByIdParty
+	public function requesterFindByIdParty(string $inn): FindByIdPartyRequester
 	{
-		$findById = new FindByIdParty($inn);
+		$findById = new FindByIdPartyRequester($inn);
 
 		$findById::setHttpClient($this->_httpClient);
 		$findById::setHttpOptions($this->_httpOptions);
@@ -74,9 +77,9 @@ final class Suggestions
 		return $findById;
 	}
 
-	public function requesterFindByIdBank(string $query, string $kpp = null): FindByIdBank
+	public function requesterFindByIdBank(string $query, string $kpp = null): FindByIdBankRequester
 	{
-		$findById = new FindByIdBank($query, $kpp);
+		$findById = new FindByIdBankRequester($query, $kpp);
 
 		$findById::setHttpClient($this->_httpClient);
 		$findById::setHttpOptions($this->_httpOptions);
@@ -84,9 +87,9 @@ final class Suggestions
 		return $findById;
 	}
 
-	public function requesterFindByIdFnsUnit(int $query): FindByIdFnsUnit
+	public function requesterFindByIdFnsUnit(int $query): FindByIdFnsUnitRequester
 	{
-		$findById = new FindByIdFnsUnit($query);
+		$findById = new FindByIdFnsUnitRequester($query);
 
 		$findById::setHttpClient($this->_httpClient);
 		$findById::setHttpOptions($this->_httpOptions);

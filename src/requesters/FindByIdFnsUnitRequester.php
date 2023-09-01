@@ -1,22 +1,19 @@
 <?php
 
-namespace c7v\dadata;
+namespace c7v\dadata\requesters;
 
 use GuzzleHttp\RequestOptions;
+use c7v\dadata\BaseRequester;
 
-class FindByIdBank extends BaseRequester
+class FindByIdFnsUnitRequester extends BaseRequester
 {
-	const METHOD_URL = '4_1/rs/findById/bank';
+	const METHOD_URL = '4_1/rs/suggest/fns_unit';
 
 	private array $_data;
 
-	public function __construct(string $query, string $kpp = null)
+	public function __construct(int $query)
 	{
-		$this->_data = [];
 		$this->_data['query'] = $query;
-		if (!is_null($kpp)) {
-			$this->_data['kpp'] = $kpp;
-		}
 	}
 
 	public function send(): \Psr\Http\Message\ResponseInterface
