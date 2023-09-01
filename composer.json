@@ -1,0 +1,24 @@
+{
+    "name": "c7v/dadata",
+    "description": "Интеграция с DaData.Ru",
+    "type": "packege",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "c7v\\dadata\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Артём Соколовский",
+            "email": "dev.sokolovsky@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "guzzlehttp/guzzle": "^7.2"
+    },
+    "require-dev": {
+        "guzzlehttp/guzzle": "^7.2"
+    }
+}
