@@ -2,6 +2,7 @@
 
 namespace c7v\dadata;
 
+use c7v\dadata\requesters\FindByAddressPostalUnitRequester;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use c7v\dadata\requesters\FindByIdFnsUnitRequester;
@@ -90,6 +91,16 @@ final class Suggestions
 	public function requesterFindByIdFnsUnit(int $query): FindByIdFnsUnitRequester
 	{
 		$findById = new FindByIdFnsUnitRequester($query);
+
+		$findById::setHttpClient($this->_httpClient);
+		$findById::setHttpOptions($this->_httpOptions);
+
+		return $findById;
+	}
+
+	public function requesterFindByAddressPostalUnit(string $query): FindByAddressPostalUnitRequester
+	{
+		$findById = new FindByAddressPostalUnitRequester($query);
 
 		$findById::setHttpClient($this->_httpClient);
 		$findById::setHttpOptions($this->_httpOptions);
