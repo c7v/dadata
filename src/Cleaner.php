@@ -8,26 +8,26 @@ use c7v\dadata\requesters\PhoneRequester;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 
-/**
- * Класс для постройки запросов к стандартизацию.
- *
- * @author Артём Соколовский <dev.sokolovsky@gmail.com>
- */
 final class Cleaner
 {
-    /** @var string Базовая URL для обращения. */
-    const BASE_URL = 'https://cleaner.dadata.ru/api/v1/clean/';
-
-	/** @var Client Http client. */
+	/**
+	 * @var Client Http client.
+	 */
 	private Client $_httpClient;
 
-	/** @var array Http options. */
+	/**
+	 * @var array Http options.
+	 */
 	private array $_httpOptions;
 
-	/** @var string Токен доступа к API DaData.Ru */
+	/**
+	 * @var string Токен доступа к API DaData.Ru
+	 */
 	private string $_accessToken;
 
-	/** @var string Секрет от API DaData.Ru */
+	/**
+	 * @var string Секрет от API DaData.Ru
+	 */
 	private string $_secret;
 
 	/**
@@ -42,7 +42,7 @@ final class Cleaner
 		$this->_secret = $secret;
 
 		$this->_httpClient = new Client([
-			'base_uri' => self::BASE_URL,
+			'base_uri' => 'https://cleaner.dadata.ru/api/v1/clean/',
 			'timeout' => $timeOut,
 		]);
 
@@ -73,11 +73,6 @@ final class Cleaner
 		return $this;
 	}
 
-    /**
-     * Разбор адреса из строки «стандартизация»
-     * @param string $query Адрес.
-     * @return AddressRequester
-     */
 	public function requesterAddress(string $query): AddressRequester
 	{
 		$address = new AddressRequester($query);
@@ -88,11 +83,6 @@ final class Cleaner
 		return $address;
 	}
 
-    /**
-     * Разбор ФИО из строки «стандартизация»
-     * @param string $query ФИО.
-     * @return NameRequester
-     */
 	public function requesterName(string $query): NameRequester
 	{
 		$name = new NameRequester($query);
@@ -103,12 +93,6 @@ final class Cleaner
 		return $name;
 	}
 
-    /**
-     * Проверяет телефон по справочнику Россвязи, определяет оператора с учётом переноса номеров, заполняет страну,
-     * город и часовой пояс.
-     * @param string $query Телефон.
-     * @return PhoneRequester
-     */
 	public function requesterPhone(string $query): PhoneRequester
 	{
 		$name = new PhoneRequester($query);

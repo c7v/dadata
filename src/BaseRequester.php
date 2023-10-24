@@ -4,9 +4,6 @@ namespace c7v\dadata;
 
 use GuzzleHttp\Client;
 
-/**
- * @author Артём Соколовский <dev.sokolovsky@gmail.com>
- */
 abstract class BaseRequester
 {
 	/**
